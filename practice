@@ -1,0 +1,140 @@
+"""#program to print pig latin"""
+
+pyg = 'ay'
+
+original = input ('Enter a word: ')
+
+if len(original) > 0 and original.isalpha():
+  word= original.lower()
+  first = word[0]
+  new_word = word + first + pyg
+  new_word = new_word[1:len(new_word)]
+  print (new_word)
+else:
+  print ('empty')
+  
+"""
+This program computes the area of circle or triangle
+"""
+print ("Calculator is starting")
+option = input ("Enter C for circle or T for triangle: ")
+option  = option.lower()
+if option=='c':
+  radius = float(input ("Enter the radius of the circle: "))
+  area = 3.14 * (radius**2)
+  print (f'The area of the circle is {area}')
+elif option=='t':
+  base = float(input("Enter the base of the triangle: "))
+  height = float(input("Enter the height of the triangle: "))
+  area = 0.5 * base * height
+  print (f'The area of the triangle is {area}')
+else:
+  print ("You entered a invalid shape")
+print ("Existing...")
+
+"""This is a dice game.
+It determines who the winner is"""
+from random import randint
+from time import sleep
+
+def get_user_guess():
+  guess = int(input ("Take a guess: "))
+  return guess
+  
+def roll_dice(number_of_sides):
+  first_roll = randint(1,number_of_sides)
+  second_roll = randint(1,number_of_sides)
+  max_val = number_of_sides * 2
+  print (f"The maximum possible value is {max_val}")
+  guess = get_user_guess()
+  if guess > max_val:
+    print ("Invalid guess")
+  else:
+    print ("Rolling...")
+    sleep(2)
+    print (f'The first roll is {first_roll}')
+    sleep(1)
+    print (f"The second roll is {second_roll}")
+    sleep(1)
+    total_roll = first_roll + second_roll
+    print (f"The total roll is {total_roll}")
+    print ("Result...")
+    sleep(1)
+    if guess == total_roll:
+      print ("You won")
+    else:
+      print ("You lost. Better luck  next time!")
+    
+  
+roll_dice(6)
+
+shopping_list = ["banana", "orange", "apple"]
+
+prices = {
+  "banana" : 4,
+  "apple"  : 2,
+  "orange" : 1.5,
+  "pear"   : 3,
+}
+stock = {
+  "banana" : 6,
+  "apple"  : 0,
+  "orange" : 32,
+  "pear"   : 15,
+}
+
+for key in prices:
+  print (key)
+  print (f"price : {prices[key]}")
+  print (f"stock: {stock[key]}") 
+  
+total =0
+for key in prices:
+  x= prices[key] * stock[key]
+  print (x)
+  total = total + x
+print (total)
+
+
+def compute_bill(food):
+  total = 0
+  for item in food:
+    if stock[item] > 0:
+      total += prices[item]
+      stock[item] -= 1
+  return total
+
+print (compute_bill(shopping_list))
+
+"""This is a rock, paper and scissors game"""
+
+from random import randint
+
+options= ["ROCK","PAPER","SCISSORS"]
+message ={
+  "tie": "Yawn it's a tie!",
+  "won": "Yaay you won!",
+  "lost": "Aww you lost!"
+}
+
+def decide_winner(user_choice,computer_choice):
+  print (f"Your choice is: {user_choice}")
+  print (f"Computer selected: {computer_choice}")
+  if user_choice == computer_choice:
+    print (message["tie"])
+  elif user_choice == options[0]  and computer_choice== options[2]:
+    print (message["won"])
+  elif user_choice == options[1] and computer_choice == options[0]:
+    print (message["won"])
+  elif user_choice == options[2] and computer_choice == options[1]:
+    print (message["won"]) 
+  else:
+    print (message["lost"])
+    
+def play_RPS():
+	user_choice= input("Enter Rock, Paper or Scissors: ")
+	user_choice = user_choice.upper()
+	computer_choice = options[randint(0,2)]
+	decide_winner(user_choice,computer_choice)
+  
+play_RPS()
